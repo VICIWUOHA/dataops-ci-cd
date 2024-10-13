@@ -1,0 +1,6 @@
+*rough/*
+*.rough
+*.db
+*cache*
+*.env
+*.vscode

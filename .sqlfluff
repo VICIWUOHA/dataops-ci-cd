@@ -1,0 +1,5 @@
+[sqlfluff]
+
+dialect = postgres
+#specify rules that apply to your org/data team's code style.
+exclude_rules = L016, L044, L031, ST06, RF05

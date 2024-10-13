@@ -1,0 +1,7 @@
+pandas==2.2.3
+pytest==8.2.2
+python-dotenv==1.0.1
+requests==2.32.3
+ruff==0.5.4
+sqlfluff==3.2.3
+
