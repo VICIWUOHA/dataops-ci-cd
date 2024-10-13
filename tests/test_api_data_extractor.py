@@ -11,14 +11,17 @@ def test_extract_data_success():
     # Mock data
     mock_endpoint = "/test_endpoint"
     mock_base_url = os.getenv("BASE_URL")
-    mock_response_data = [{"id": 1, "name": "Test Product", "id": "Dummy Product"}]
+    mock_response_data = [
+        {"id": 1, "name": "Test Product"},
+        {"id": 2, "name": "Dummy Product"},
+    ]
 
     # Create a mock response
     mock_response = Mock()
     mock_response.json.return_value = mock_response_data
 
     # Patch the requests.get method
-    with patch('requests.get') as mock_get:
+    with patch("requests.get") as mock_get:
         mock_get.return_value = mock_response
         result = extract_data(mock_endpoint)
 
@@ -28,15 +31,12 @@ def test_extract_data_success():
         # Assert that the function returns the expected data
         assert result == mock_response_data
 
+
 def test_extract_data_exception():
     mock_endpoint = "/test_endpoint"
 
     # Patch requests.get to raise an exception
-    with patch('requests.get', side_effect=requests.RequestException("Test error")):
+    with patch("requests.get", side_effect=requests.RequestException("Test error")):
         # Assert that the function raises the exception
         with pytest.raises(requests.RequestException):
             extract_data(mock_endpoint)
-
-
-
-

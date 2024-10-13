@@ -7,8 +7,8 @@ load_dotenv()
 BASE_URL = os.getenv("BASE_URL")
 
 
-def extract_data(endpoint:str)-> list:
-    """ used for extracting Data from the business API.
+def extract_data(endpoint: str) -> list:
+    """used for extracting Data from the business API.
 
     `args:`
         endpoint: the API endpoint to extract data from.
@@ -19,18 +19,16 @@ def extract_data(endpoint:str)-> list:
     try:
         print(f"`{endpoint}` Extraction in progress....")
         raw_data = requests.get(BASE_URL + endpoint).json()
-        
+
     except Exception as e:
-        print(f"ERROR: Occured during `{endpoint}` extraction-> ",e)
+        print(f"ERROR: Occured during `{endpoint}` extraction-> ", e)
         raise e
     print(f"`{endpoint}` Extraction Successful. -> Got `{len(raw_data)}` {endpoint}")
     return raw_data
 
 
-
-
 def transform_data(raw_data: list, endpoint: str) -> pd.DataFrame:
-    """ used for transforming raw data into a pandas DataFrame.
+    """used for transforming raw data into a pandas DataFrame.
 
     `args:`
         raw_data: list of dictionaries containing product details.
