@@ -31,7 +31,7 @@ jobs:
             
             # In this case, we are using ruff (a python linter & formatter built on rust), but you can use flake8, black or pylint instead
           - name: Run Lint check with ruff on Changed Python files only
-            uses: chartboost/ruff-action@v1
+            uses: astral-sh/ruff-action@v1
             with:
               # if we only want to check correctness in our src python directory, but then, what about the tests?
               # leaving the src arg as default, would run on our root directory (any python files)
