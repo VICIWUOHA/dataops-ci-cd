@@ -1,0 +1,37 @@
+name : "Data Platform CI/CD Tests"
+#1) define the broad name of your Job
+
+# 2) Specify the git events that should trigger your ci workflow (push or pull_request)
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+
+    # you can have one or more jobs in your workflow and each job would have more than one step
+    # in this case, we simply want to lint our code to validate syntax
+    lint:
+        # specify the type of machine where you want to run your scripts - ubuntu is most common.
+        runs-on: ubuntu-latest
+        steps:
+
+            - uses: actions/checkout@v4
+
+            - name: Setup Environment
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.12'
+
+            - name: Install Python reqs
+              run:  |
+                    python -m pip install --upgreade pip
+                    python -m pip install -r requirements.txt
+                    pip check
+                
+
+
+            
+
+
+

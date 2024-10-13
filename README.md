@@ -12,6 +12,8 @@
 ```
     pyenv virtualenv <your-preferred-python-version> <you-proposed-venv-name>
 
+    eg; 
+    
     pyenv virtualenv 3.12.4 .venv-3-12-4-dataops
 
     pyenv activate .venv-3-12-4-dataops 
@@ -39,6 +41,12 @@
 
 
 
+## Cut the Talk !... Why Is this Important
 
+
+## Getting Started with Githiub Actions for your CI/CD process
+
+You need a .github foldder with a workflows/ directory.
+Github workflows are declared as .yaml files which are parsed and executed on github runners. In Larger orgs and enterprise accounts, you can decide to use your own self-hosted cloud runners (compute service) to execute the scripts you want to run.
 
 
