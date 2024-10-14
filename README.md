@@ -65,7 +65,9 @@ Some data teams do not use version control, but if this is in place, CI/CD makes
 
 - Enforcing Uniformity: We can be sure that team member A's style of writing SQL does not differ from that of team member B.
 
-- Syntax Validation: Catching Syntax errors that could otherwise go unnoticed. In the image below, an error was caught during the ci job Ensuring things like dashboards/models dependent on the affected file(s) don't get broken.
+- Syntax Validation: Catching Syntax errors that could otherwise go unnoticed. In the image below, an error was caught during the ci job Ensuring things like dashboards/models dependent on the affected file(s) don't get broken. If tests fail, an alert would be triggered via email to the personnel who pushed it. See an example below;
+
+![Failed CI RUN](assets/failed_ci_run.png)
 
 - No Code Smells: Cleaner Code is easier to read, think of a **_ _200def _line python"file' or a 350lineSQLquery writtenbySomeone whoLEFTTHEORGa_** while ago . ...well that line was poorly formatted 😟.
 
@@ -91,11 +93,17 @@ Continuous deployment is a rather much more automated process that automatically
 - Within your branch, You need a .github folder with a workflows/ sub-directory. -> `.github/workflows/`
 Github workflows are declared as .yaml files which are parsed and executed on github runners. In Larger orgs and enterprise accounts, you can decide to use your own self-hosted cloud runners (compute service) to execute the validation commands/scripts in your deployment pipeline.
 
-- For the sake of this project, Navigate to the dev branch and copy contents of the `.github/workflows/ci_main.yaml` file into your own branch created earlier.
+- For the sake of this project, Navigate to the dev branch and copy contents of the [.github/workflows/ci_main.yaml](https://github.com/VICIWUOHA/dataops-ci-cd/blob/dev/.github/workflows/ci_main.yaml) file into your own branch created earlier.
 
 - Commit your changes and push to your branch.
 
         git push -u origin feat-ci
+
+- Go to the settings/Environments section of your github repository and create an environment named `DEV`. Also create an environment variable named `BASE_URL` with the same value in your `.env` file (exclude the strings). This would be useful for running our unit tests as part of our CI/CD job.
+
+
+![BASE_URL ENV VAR](assets/env_var.png)
+
 
 
 
@@ -132,8 +140,11 @@ Note that while linters drastically reduce errors related to Syntax or poor form
         ruff format -v tests python_base
 
 
+- Push to your branch again to validate that your CI/CD setup works.
 
 ### What Next Can be Done?
+
+- From the [dev branch](https://github.com/VICIWUOHA/dataops-ci-cd/blob/dev/.github/workflows/ci_main_v2.yaml) Copy the `ci_main_v2.yaml` job into your repo and test to see that it runs. This workflow has 2 jobs as opposed to `ci_main.yaml` which had a single Job.
 
 - Automate pull requests for your team when code is pushed to a specific branch.
 
@@ -156,3 +167,7 @@ Note that while linters drastically reduce errors related to Syntax or poor form
 6. [FreeCodeCamp: How to setup a CI/CD pipeline..](https://www.freecodecamp.org/news/how-to-setup-a-ci-cd-pipeline-with-github-actions-and-aws/)
 
 6. [Atlassian: Continuous integration vs. delivery vs. deployment](https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment)
+
+
+_Want to discuss even more ?_
+🤝 _Let's connect on [Linkedin](https://linkedin.com/in/viciwuoha)_ 
