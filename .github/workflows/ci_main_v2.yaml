@@ -22,6 +22,7 @@ jobs:
             uses: actions/setup-python@v5
             with:
               python-version: '3.12'
+              cache: 'pip'
 
           - name: Install Python reqs
             run:  |
@@ -64,10 +65,10 @@ jobs:
       needs: lint
       steps:
         - uses: actions/checkout@v4
-        - name: Setup Python Environment
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.12'
+        # - name: Setup Python Environment
+        #   uses: actions/setup-python@v5
+        #   with:
+        #     python-version: '3.12'
   
         # - name: Install dependencies
         #   run: |
