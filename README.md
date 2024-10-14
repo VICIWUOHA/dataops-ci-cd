@@ -1,7 +1,9 @@
 # Implementing CI/CD for your Data Engineering & Analytics Workloads
-*Author: Victor Iwuoha*
+**Author: Victor Iwuoha**
 
 *Data Platform Engineer*
+
+_2024-10-14_
 
 ![Data Ops Image adapted from MonteCarlo.io](assets/DataOps-framework-mc.jpg)
 
