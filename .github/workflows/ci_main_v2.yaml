@@ -1,4 +1,4 @@
-name : "Data Platform CI/CD Tests"
+name : "Data Platform CI/CD Lint & Tests"
 #1) define the broad name of your Job
 
 # 2) Specify the git events that should trigger your ci workflow (push or pull_request)
