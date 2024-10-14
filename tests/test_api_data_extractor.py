@@ -11,14 +11,17 @@ def test_extract_data_success():
     # Mock data
     mock_endpoint = "/test_endpoint"
     mock_base_url = os.getenv("BASE_URL")
-    mock_response_data = [{"id": 1, "name": "Test Product"}, {"id": 2, "name": "Dummy Product"}]
+    mock_response_data = [
+        {"id": 1, "name": "Test Product"},
+        {"id": 2, "name": "Dummy Product"},
+    ]
 
     # Create mock response
     mock_response = Mock()
     mock_response.json.return_value = mock_response_data
 
     # Patch with requests.get
-    with patch('requests.get') as mock_get:
+    with patch("requests.get") as mock_get:
         mock_get.return_value = mock_response
         result = extract_data(mock_endpoint)
 
