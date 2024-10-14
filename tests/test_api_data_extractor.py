@@ -7,15 +7,6 @@ import requests
 from python_base.api_data_extractor import extract_data
 
 
-# Basic Tests to ensure our extractor works properly.
-
-import os
-import pytest
-from unittest.mock import patch, Mock
-import requests
-from python_base.api_data_extractor import extract_data
-
-
 def test_extract_data_success():
     # Mock data
     mock_endpoint = "/test_endpoint"
