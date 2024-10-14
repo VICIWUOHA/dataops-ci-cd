@@ -9,8 +9,9 @@ from python_base.api_data_extractor import extract_data
 
 def test_extract_data_success():
     # Mock data
-    mock_endpoint = "/test_endpoint"
-    mock_base_url = os.getenv("BASE_URL", "https://api.store.com")
+    # in reality, our enpoint would be things like products, carts, etc.
+    mock_endpoint = "test_endpoint"
+    mock_base_url = os.getenv("BASE_URL")
     mock_response_data = [
         {"id": 1, "name": "Test Product"},
         {"id": 2, "name": "Dummy Product"},
@@ -33,7 +34,7 @@ def test_extract_data_success():
 
 
 def test_extract_data_exception():
-    mock_endpoint = "/test_endpoint"
+    mock_endpoint = "test_endpoint"
 
     # Patch requests.get to raise an exception
     with patch("requests.get", side_effect=requests.RequestException("Test error")):

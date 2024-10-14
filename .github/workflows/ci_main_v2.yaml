@@ -79,6 +79,7 @@ jobs:
         - name: Run pytest tests in verbose manner
           run: |
             python -m pytest tests/ -s -vvv
+          # this env var should be defined in the settings/Environments section on the github repo
           env:
             BASE_URL: ${{ vars.BASE_URL }}
 
