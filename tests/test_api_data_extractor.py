@@ -25,7 +25,7 @@ def test_extract_data_success():
         # Assert that requests.get was called with the correct URL
         mock_get.assert_called_once_with(mock_base_url + mock_endpoint)
 
-        # Assert that the function returns the expected data
+        # Assert that our function returns the expected data
         assert result == mock_response_data
 
 def test_extract_data_exception():
