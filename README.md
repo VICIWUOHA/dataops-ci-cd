@@ -153,6 +153,11 @@ Note that while linters drastically reduce errors related to Syntax or poor form
 - Deploy your pushed scripts to a remote registry, For this, you may need to configure secrets on github to allow access into eg; your docker registry or storage bucket/ cloud resource.
 
 
+### Over And Out 🚀
+_I hope this sparks some magic in your data team as i have experienced in the last 4 years of implementing CI/CD._
+
+Want to discuss even more ? 🤝  _Let's connect on [Linkedin.](https://linkedin.com/in/viciwuoha)_
+
 
 ### References
 
@@ -162,7 +167,7 @@ Note that while linters drastically reduce errors related to Syntax or poor form
 
 3. [Ruff Docs](https://docs.astral.sh/ruff/)
 
-4. [Free Tutorial about Testing for Python Development](https://github.com/VICIWUOHA/python-tests-tutorial)
+4. [Free Tutorial about Testing for Python Development 🚀](https://github.com/VICIWUOHA/python-tests-tutorial)
 
 5. [Redhat: What is CI/CD](https://www.redhat.com/en/topics/devops/what-is-ci-cd)
 
@@ -170,6 +175,3 @@ Note that while linters drastically reduce errors related to Syntax or poor form
 
 6. [Atlassian: Continuous integration vs. delivery vs. deployment](https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment)
 
-
-_Want to discuss even more ?_
-🤝 _Let's connect on [Linkedin](https://linkedin.com/in/viciwuoha)_ 
