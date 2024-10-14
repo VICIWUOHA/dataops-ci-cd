@@ -7,6 +7,6 @@ SELECT
     COUNT(DISTINCT s.product_id) AS unique_product_count
 FROM customers AS c
 LEFT JOIN sales AS s ON c.id = s.customer_id
-GROUP BY 1,2
+GROUP BY 1, 2
 --
 HAVING SUM(s.amount) > 0 --business is only in cutomers who have spent cash
