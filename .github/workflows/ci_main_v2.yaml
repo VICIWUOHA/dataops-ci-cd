@@ -1,0 +1,67 @@
+name : "Data Platform CI/CD Tests"
+#1) define the broad name of your Job
+
+# 2) Specify the git events that should trigger your ci workflow (push or pull_request)
+on:
+    pull_request:
+        branches:
+            - main
+
+jobs:
+
+    # you can have one or more jobs in your workflow and each job would have more than one step
+    # in this case, we simply want to lint our code to validate syntax
+    lint:
+        # specify the type of machine where you want to run your scripts - ubuntu is most common.
+        runs-on: ubuntu-latest
+        steps:
+
+          - uses: actions/checkout@v4
+
+          - name: Setup Environment
+            uses: actions/setup-python@v5
+            with:
+              python-version: '3.12'
+
+          - name: Install Python reqs
+            run:  |
+                python -m pip install --upgrade pip
+                python -m pip install -r requirements.txt
+                pip check
+            
+            # In this case, we are using ruff (a python linter & formatter built on rust), but you can use flake8, black or pylint instead
+          - name: Run Lint check with ruff on Changed Python files only
+            uses: astral-sh/ruff-action@v1
+            with:
+              # if we only want to check correctness in our src python directory, but then, what about the tests?
+              # leaving the src arg as default, would run on our root directory (any python files)
+              # src: "./python_base"
+              args: 'format --diff -v'
+              changed-files: 'true'
+
+            # Using the tj-actions library, we would validate any changed .sql files.
+          - name: Get Changed SQL Files
+            id: changed-files-yaml
+            uses: tj-actions/changed-files@v44
+            with:
+              files_yaml: |
+                sqlfiles:
+                - '**.sql'
+              dir_names_exclude_current_dir: True
+    
+          - name: Validate Changed Sql Files
+            if: steps.changed-files-yaml.outputs.sqlfiles_any_changed == 'true'
+            env:
+              ALL_CHANGED_SQL_FILES: ${{ steps.changed-files-yaml.outputs.sqlfiles_all_changed_files }}
+            run: |
+              echo $ALL_CHANGED_SQL_FILES
+    
+              sqlfluff lint -v $ALL_CHANGED_SQL_FILES
+
+                
+
+
+            
+
+
+
