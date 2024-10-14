@@ -12,9 +12,9 @@ _Image reference: [Monte Carlo](https://www.montecarlodata.com/blog-what-is-data
 
 ### Fork/ Clone Project Repo
 
-- After forking/ clonin the repo to your local environment, quickly checkout to a branch named feat-ci-cd. You can commence your changes to main from this tree.
+- After forking/ clonin the repo to your local environment, quickly checkout to a branch named feat-ci or any other name of your choice. You can commence your changes to main from this branch.
 
-        git checkout -b feat-ci-cd
+        git checkout -b feat-ci
 
 ### Set up environment
 
@@ -63,18 +63,17 @@ A typical CI/CD workflow is a cycle that invloves; Push/Publish -> Build/Test ->
 
 Some data teams do not use version control, but if this is in place, CI/CD makes it even more robust through the following;
 
-- Uniformity: We can be sure that team member A's style of writing SQL does not differ from that of team member B.
+- Enforcing Uniformity: We can be sure that team member A's style of writing SQL does not differ from that of team member B.
 
-- Syntax: Catching Syntax errors that could otherwise go unnoticed. In the image below, an error was caught during the ci job Ensuring things like dashboards/models dependent on the affected file(s) don't get broken.
+- Syntax Validation: Catching Syntax errors that could otherwise go unnoticed. In the image below, an error was caught during the ci job Ensuring things like dashboards/models dependent on the affected file(s) don't get broken.
 
 - No Code Smells: Cleaner Code is easier to read, think of a **_ _200def _line python"file' or a 350lineSQLquery writtenbySomeone whoLEFTTHEORGa_** while ago . ...well that line was poorly formatted 😟.
-- 
 
 ## Recap
 ### 🔗 CONTINUOUS INTEGRATION
 In this phase, new or updated code is simply validated against the main/production/master branch to ensure that no breaking changes were introduced. It may involve Linting/Syntax checks and maybe Unit tests. 
 
-🆓 _To get a **very good understanding of Testing for Python development**, see my [Free Tutorial](https://github.com/VICIWUOHA/python-tests-tutorial).._
+🎉 _To get a **very good understanding of Testing for Python development**, see my [Free Tutorial](https://github.com/VICIWUOHA/python-tests-tutorial).._
 
 
 ### 🔗 CONTINUOUS DEPLOYMENT/ DELIVERY
@@ -87,20 +86,24 @@ Continuous deployment is a rather much more automated process that automatically
 
 
 
-
 ## Getting Started with Github Actions for your CI/CD Process
 
-- You need a .github folder with a workflows/ directory. -> `.github/workflows`
+- Within your branch, You need a .github folder with a workflows/ sub-directory. -> `.github/workflows/`
 Github workflows are declared as .yaml files which are parsed and executed on github runners. In Larger orgs and enterprise accounts, you can decide to use your own self-hosted cloud runners (compute service) to execute the validation commands/scripts in your deployment pipeline.
 
 - For the sake of this project, Navigate to the dev branch and copy contents of the `.github/workflows/ci_main.yaml` file into your own branch created earlier.
 
+- Commit your changes and push to your branch.
+
+        git push -u origin feat-ci
 
 
-### FORMATING TO PASS CI/CD Runs
 
+### FORMATTING TO PASS CI/CD Runs
 
-- To get our fies properly formatted we would leverage the ruff library for python and the sqlfluff package for sql files See docs in the [References](https://github.com/VICIWUOHA/dataops-ci-cd/blob/90ffb229c01f50c5ce1fd870e537e5a310344b08/README.md#L134) section.
+- After your push, navigate to the Actions Tab of your repo on github, you should notice some red checks showing failuress of your Jobs.
+
+- To get our files properly formatted to pass the ci tests we would leverage the `ruff` library for python and the `sqlfluff` package for sql files See docs in the [References](https://github.com/VICIWUOHA/dataops-ci-cd?tab=readme-ov-file#references) section.
 
 - To validate our sql files;
 
@@ -114,8 +117,8 @@ Github workflows are declared as .yaml files which are parsed and executed on gi
 
         ruff check python_base/
 
-Files that failed any of these tests can easily be fixed using the commandas below.
-Note that while linters do not guarantee code/business logic, they drastically reduce errors related to Syntax or poor formatting. Linters also ensure that everyone on your data team who needs to contribute code to the central knowledge base complies to the team's standards. For the sqlfluff configurations we defined, see [./sqlfuff](.sqlfluff)
+Files that failed any of these tests can easily be fixed using the commands below.
+Note that while linters drastically reduce errors related to Syntax or poor formatting, they do not guarantee code/business logic. However, Linters also ensure that everyone on your data team who needs to contribute code to the central knowledge base complies to the team's standards. For the sqlfluff configurations we defined, see [./sqlfuff](.sqlfluff)
 
 - To Format:
 
