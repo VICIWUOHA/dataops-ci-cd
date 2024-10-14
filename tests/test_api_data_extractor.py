@@ -10,7 +10,7 @@ from python_base.api_data_extractor import extract_data
 def test_extract_data_success():
     # Mock data
     mock_endpoint = "/test_endpoint"
-    mock_base_url = os.getenv("BASE_URL","https://api.store.com")
+    mock_base_url = os.getenv("BASE_URL", "https://api.store.com")
     mock_response_data = [
         {"id": 1, "name": "Test Product"},
         {"id": 2, "name": "Dummy Product"},
