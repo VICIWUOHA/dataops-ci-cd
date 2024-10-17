@@ -24,7 +24,7 @@ def extract_data(endpoint:str)-> list:
         print(f"ERROR: Occured during `{endpoint}` extraction-> ",e)
         raise e
     print(f"`{endpoint}` Extraction Successful. -> Got `{len(raw_data)}` {endpoint}")
-    return raw_data
+    return [raw_data]
 
 
 
