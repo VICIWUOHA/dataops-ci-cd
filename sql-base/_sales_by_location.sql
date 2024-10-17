@@ -1,7 +1,9 @@
 --
 
-SELECT l.location_name, SUM(s.amount) sales
-FROM locations l
-LEFT JOIN sales s
-ON l.id = s.location_id
-GROUP BY l.location_name
+SELECT
+    l.loaction_name,
+    SUM(s.amount) AS sales
+FROM locations AS l
+LEFT JOIN sales AS s
+    ON l.id = s.location_id
+GROUP BY l.loaction_name

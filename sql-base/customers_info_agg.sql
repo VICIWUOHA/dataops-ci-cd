@@ -9,3 +9,4 @@ FROM customers AS c
 LEFT JOIN sales AS s ON c.id = s.customer_id
 GROUP BY 1, 2
 --
+HAVING SUM(s.amount) > 0 --business is only in cutomers who have spent cash

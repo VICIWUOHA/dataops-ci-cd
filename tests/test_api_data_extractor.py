@@ -9,16 +9,20 @@ from python_base.api_data_extractor import extract_data
 
 def test_extract_data_success():
     # Mock data
-    mock_endpoint = "/test_endpoint"
+    # in reality, our enpoint would be things like products, carts, etc.
+    mock_endpoint = "test_endpoint"
     mock_base_url = os.getenv("BASE_URL")
-    mock_response_data = [{"id": 1, "name": "Test Product"}, {"id": 2, "name": "Dummy Product"}]
+    mock_response_data = [
+        {"id": 1, "name": "Test Product"},
+        {"id": 2, "name": "Dummy Product"},
+    ]
 
     # Create mock response
     mock_response = Mock()
     mock_response.json.return_value = mock_response_data
 
     # Patch with requests.get
-    with patch('requests.get') as mock_get:
+    with patch("requests.get") as mock_get:
         mock_get.return_value = mock_response
         result = extract_data(mock_endpoint)
 
@@ -28,15 +32,12 @@ def test_extract_data_success():
         # Assert that our function returns the expected data
         assert result == mock_response_data
 
+
 def test_extract_data_exception():
-    mock_endpoint = "/test_endpoint"
+    mock_endpoint = "test_endpoint"
 
     # Patch requests.get to raise an exception
-    with patch('requests.get', side_effect=requests.RequestException("Test error")):
+    with patch("requests.get", side_effect=requests.RequestException("Test error")):
         # Assert that the function raises the exception
         with pytest.raises(requests.RequestException):
             extract_data(mock_endpoint)
-
-
-
-
